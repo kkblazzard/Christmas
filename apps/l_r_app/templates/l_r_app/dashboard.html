@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'l_r_app/css/css_index.c' %}">    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Codystar">
+    <script src="{% static 'display/js/my_script.js' %}"></script>
+    <title>dashboard</title>
+    <style>
+        *{
+            color:white;
+            font-weight:bold;
+        }
+        .green{
+            color:rgb(6, 156, 6);
+        }
+        .gold{
+            color:goldenrod;
+        }
+        .red{
+            color:red;
+        }
+        .body{
+    background-position: left top;
+    background-image: url("{% static 'l_r_app/images/dashboardt1.jpg' %}");
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+        .profile {
+            display: inline-block;
+            text-align: left;
+
+        }
+        .nav{
+        margin-left:37%;
+        }
+        .links{
+            display:inline-block;
+            color:white;
+            margin-left:4px;
+            margin-right:4px;
+        }
+        .inline_block{
+        display:inline-block;
+    }
+    .hello{
+        color:green;
+        margin-left:35%;
+    }
+    .rating {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        }
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    }
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+    }
+    .remove{
+        color:red;
+        margin-left:55%;
+    }
+    </style>
+</head>
+
+<body class='body'>
+    <div>
+        <nav>
+            <div class='nav'>
+            <a class='gold' href='/christmas''>Home</a><h6 class ='links'>  |</h6>
+            <a class='gold' href='/christmas/all_shows''>All Shows</a><h6 class ='links'>  |</h6>
+            <a class='gold' href='/{{request.session.id}}/edit'>Edit Profile  </a><h6 class ='links'>  |</h6>
+            <a class='gold' href='/logout''>Logout</a>
+            </div>
+        </nav>
+        <h2 class='hello'>Marry Christmas, {{request.session.fname}}! </h2> </div>
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        {% endif%}
+    </div>
+    <div class='container'>
+    <div>
+        <h3 class='gold'>Your Watchlist:</h3>
+                <table class="table table-striped" class="table table-bordered" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class='green' scope="col">Title</th>
+                            <th class= 'red' scope="col">Network</th>
+                            <th class='green' scope="col">Date</th>
+                            <th class= 'red'scope="col">Time</th>
+                            <th class='green' scope="col">Description</th>
+                            </tr>
+                        </thead>
+                    {% for item in watchlist%}
+                <tbody>
+                    <tr>
+                        <td class='gold'>{{item.title}}</td>
+                        <td class='green'>{{item.network}}</td>
+                        <td class = 'red'>{{item.air_date}}</td>
+                        <td class='green'>{{item.time}}</td>
+                        <td class='red'>{{item.desc}}</td>
+                        <td>
+                            <a class='green'name="remove"href= "christmas/remove/{{item.id}}">Remove from my watchlist  </a>
+                        
+                    </tr>
+        {% endfor %}
+                    </tbody>
+                </table>
+
+    </div>
+    {% if past_shows%}
+    
+    <div>
+            <h6 class='gold'>Shows you watched:</h6>
+            <table class="table table-striped" class="table table-bordered" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class='green' scope="col">Title</th>
+                        <th class='red' scope="col">Air Date</th>
+                        <th class='green' scope="col"></th>
+                        </tr>
+                    </thead>
+                {% for watched in past_shows%}
+            <tbody>
+                <tr>
+                    <td class='green'>{{past_shows.title}}</td>
+                    <td class='red'>{{past_shows.air_date}}</td>
+                    <td><a  class='green' href='/christmas/{{watched.id}}'>Rate this show</a>
+                        <a class='remove' name="remove"href= "christmas/remove/{{item.id}}">Remove from my watchlist  </a></td>
+                    
+                    
+                </tr>
+    {% endfor %}
+                </tbody>
+            </table>
+
+    </div>
+    {% endif %}
+ </div>
+</body>
+</html>

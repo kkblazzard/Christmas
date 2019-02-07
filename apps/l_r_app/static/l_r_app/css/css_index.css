@@ -1,0 +1,59 @@
+.inline{
+    display:inline-block;
+
+}
+.header{
+    height:100px;
+    background-color:rgb(113, 116, 117);
+}
+.registration{
+    display:inline-block;
+    text-align:left;
+    height:500px;
+    width:30%;
+    margin-left:100px;
+}
+.registration_right{
+    display:inline-block;
+    text-align:left;
+    height: 236px;
+    width: 31%;
+    margin-left:94px;
+    vertical-align: top;
+}
+.login{
+    display:inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin-left:45%;
+    margin-top:-70px;
+
+}
+.block{
+    display:block;
+}
+.inputbox{
+    width:250px;
+}
+.username{
+margin-left:45px;
+}
+.password{
+margin-left:173px;
+}
+.register_here{
+margin-left:22%;
+}
+.register{
+    margin-top:15px;
+margin-left:-90px;
+}
+.form{
+    height: 44%;
+    width: 60%;
+    display: inline-block;
+}
+.messages{
+
+    display:inline-block
+}
